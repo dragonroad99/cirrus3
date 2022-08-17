@@ -1,8 +1,8 @@
 env:
-    credentials: "ENCRYPTED[!efab3ed4529d2ffe013709890c8be3abf5839a337f965dc607d8c43bb57a39e7d52ff756687bc92c198f87199c03abc1!]"
-    rcloneconfig: "ENCRYPTED[!de9a884ad227a93ee08eb71e4492fb073234531abe6999b0e234f22be251fa381b2c090dc28399c8904a38aa4fde9412!]"
-    tokentl: "ENCRYPTED[!794f286e43a45e476ba1bd2c0ad76de5872b085136e36b0d645d7531bb3b90737f3447bf5571cf4420e5b9743ce88061!]"
-    idtl: "ENCRYPTED[!d0a22747709d8cc7482c5f0e1c926b7e3dddfc3e126a08649f543c0a47fba70b243a1b766cd01f4f1765978b8cf53642!]"
+    credentials: "ENCRYPTED[!98d936b08edaef0158a818f1d57623b0bb91fe25757a41ca376160aea2764634a1e0c8b9c399d0e14428beb750ecf01c!]"
+    rcloneconfig: "ENCRYPTED[!83d81d0a96dfad8ff7aa98641c6b85844757060717e26fe7451cf332bf75074a56e152c5295df36aec22553e4a35b599!]"
+    tokentl: "ENCRYPTED[!238754dcb8487c5946fb2ef33f51ec75c7496ffd5ef1294421dc101cb2650feb0948cc08ae9cb44d661fcc87f161c60c!]"
+    idtl: "ENCRYPTED[!d14c07260b8e58db209fb08351b0daab88dab14be716db6efb2ee85131d8d74ba5e29da3f49c0b57e121bcd7c86c1090!]"
     lunch : lunch bootleg_juice-userdebug
     make: make bacon
 
@@ -41,7 +41,7 @@ task:
       - cd ~/rom
       - rm -rf * .repo
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/BootleggersROM/manifest.git -b queso -g default,-mips,-darwin,-notdefault
-      - git clone https://github.com/darknius20/local_manifest -b bootlegQ --depth 1 .repo/local_manifests
+      - git clone https://github.com/dragonroad99/local_manifest -b bootlegQ --depth 1 .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
