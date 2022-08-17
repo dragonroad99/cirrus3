@@ -1,5 +1,4 @@
 env:
-    credentials: "ENCRYPTED[!98d936b08edaef0158a818f1d57623b0bb91fe25757a41ca376160aea2764634a1e0c8b9c399d0e14428beb750ecf01c!]"
     rcloneconfig: "ENCRYPTED[!83d81d0a96dfad8ff7aa98641c6b85844757060717e26fe7451cf332bf75074a56e152c5295df36aec22553e4a35b599!]"
     tokentl: "ENCRYPTED[!238754dcb8487c5946fb2ef33f51ec75c7496ffd5ef1294421dc101cb2650feb0948cc08ae9cb44d661fcc87f161c60c!]"
     idtl: "ENCRYPTED[!d14c07260b8e58db209fb08351b0daab88dab14be716db6efb2ee85131d8d74ba5e29da3f49c0b57e121bcd7c86c1090!]"
@@ -19,10 +18,6 @@ task:
        - export DEBIAN_FRONTEND=noninteractive
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.rclone.conf
-       - git config --global user.name "dragonroad99"
-       - git config --global user.email "fadhilm298@gmail.com"
-       - echo "$credentials" > ~/.git-credentials
-       - git config --global credential.helper store --file=~/.git-credentials
        - mkdir -p ~/ccache
        - rclone copy darknius20:bootlegq/ccache.tar.gz ~/ -P
        - cd ~/
