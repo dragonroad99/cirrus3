@@ -41,7 +41,6 @@ task:
       - git clone --depth=1 https://github.com/dragonroad99/diemen -b bootleg device/xiaomi/juice
       - git clone --depth=1 https://github.com/dragonroad99/viemen --single-branch -b 10.staging vendor/xiaomi/juice
       - git clone --depth=1 https://github.com/dragonroad99/unicorn_kernel_citrus --single-branch -b main-protonclang kernel/xiaomi/juice
-      - git clone --depth=1 https://github.com/kdrag0n/proton-clang --single-branch -b master prebuilts/clang/host/linux-x86/proton
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
   Build_script:
