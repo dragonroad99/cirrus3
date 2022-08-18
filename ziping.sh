@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 1 m
+sleep 1m
 
 cd ~/
 
