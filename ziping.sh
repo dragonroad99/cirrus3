@@ -2,7 +2,7 @@
 
 sleep 5s
 
-cd /tmp
+cd ~/
 
 com ()
 {
