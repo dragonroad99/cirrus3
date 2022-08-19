@@ -11,5 +11,4 @@ ccache -z
 export BUILD_USERNAME="darknius"
 export BUILD_HOSTNAME="darx-labs"
 $lunch
-breakfast juice
 $make -j8

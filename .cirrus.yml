@@ -2,8 +2,8 @@ env:
     rcloneconfig: "ENCRYPTED[!34d675dd50d10178e50359e95468a7b60c525c885f9caad4759899a644dc50fffd89305a80d491eb72cb5a4c431f79d2!]"
     tokentl: "ENCRYPTED[!238754dcb8487c5946fb2ef33f51ec75c7496ffd5ef1294421dc101cb2650feb0948cc08ae9cb44d661fcc87f161c60c!]"
     idtl: "ENCRYPTED[!d14c07260b8e58db209fb08351b0daab88dab14be716db6efb2ee85131d8d74ba5e29da3f49c0b57e121bcd7c86c1090!]"
-    lunch : lunch bootleg_juice-userdebug
-    make: make bacon
+    lunch : lunch nad_juice-userdebug
+    make: mka nad
 
 
 task:
@@ -19,7 +19,7 @@ task:
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.rclone.conf
        - mkdir -p ~/ccache
-       - rclone copy darx:bootlegq/ccache.tar.gz ~/ -P
+       - rclone copy darx:nadq/ccache.tar.gz ~/ -P
        - cd ~/
        - time tar xf ccache.tar.gz
        - cd ~/
@@ -35,10 +35,10 @@ task:
       - mkdir -p ~/rom
       - cd ~/rom
       - rm -rf * .repo
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/BootleggersROM/manifest.git -b queso -g default,-mips,-darwin,-notdefault
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest -b 10 -g default,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
       # DT/VT/KT/TC
-      - git clone --depth=1 https://github.com/dragonroad99/diemen -b bootleg device/xiaomi/juice
+      - git clone --depth=1 https://github.com/dragonroad99/diemen -b nadq device/xiaomi/juice
       - git clone --depth=1 https://github.com/dragonroad99/viemen --single-branch -b 10.staging vendor/xiaomi/juice
       - git clone --depth=1 https://github.com/dragonroad99/unicorn_kernel_citrus --single-branch -b main-protonclang kernel/xiaomi/juice
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
@@ -58,5 +58,5 @@ task:
       - ./ziping.sh
       - cd ~/
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz darx:bootlegq -P
+      - rclone copy ccache.tar.gz darx:nadqq -P
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Ccache Uploaded Successfully!"
