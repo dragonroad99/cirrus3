@@ -1,4 +1,5 @@
 env:
+    credentials: "ENCRYPTED[!6c455d28d65bf04cef60f061d4d702326630322ea3839993f78a746f96d3860d08ab35f2b9f83306b1afa766b6e1681c!]"
     rcloneconfig: "ENCRYPTED[!34d675dd50d10178e50359e95468a7b60c525c885f9caad4759899a644dc50fffd89305a80d491eb72cb5a4c431f79d2!]"
     tokentl: "ENCRYPTED[!238754dcb8487c5946fb2ef33f51ec75c7496ffd5ef1294421dc101cb2650feb0948cc08ae9cb44d661fcc87f161c60c!]"
     idtl: "ENCRYPTED[!d14c07260b8e58db209fb08351b0daab88dab14be716db6efb2ee85131d8d74ba5e29da3f49c0b57e121bcd7c86c1090!]"
@@ -18,6 +19,10 @@ task:
        - export DEBIAN_FRONTEND=noninteractive
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.rclone.conf
+       - git config --global user.name "dragonroad99"
+       - git config --global user.email "fadhilm298@gmail.com"
+       - echo "$credentials" > ~/.git-credentials
+       - git config --global credential.helper store --file=~/.git-credentials
        - mkdir -p ~/ccache
        - rclone copy darx:RRQ/ccache.tar.gz ~/ -P
        - cd ~/
@@ -36,13 +41,8 @@ task:
       - cd ~/rom
       - rm -rf * .repo
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/ResurrectionRemix/platform_manifest.git -b Q -g default,-mips,-darwin,-notdefault
+      - git clone https://github.com/dragonroad99/local_manifest -b rrq --depth 1 .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
-      # DT/VT/KT/TC
-      - git clone --depth=1 https://github.com/dragonroad99/diemen -b RR device/xiaomi/juice
-      - git clone --depth=1 https://github.com/dragonroad99/viemen --single-branch -b 10.staging vendor/xiaomi/juice
-      - git clone --depth=1 https://github.com/dragonroad99/unicorn_kernel_citrus --single-branch -b main-protonclang kernel/xiaomi/juice
-      - rm -rf packages/apps/ManagedProvisioning
-      - git clone --depth=1 https://github.com/dragonroad99/android_packages_apps_ManagedProvisioning --single-branch -b lineage-17.1 packages/apps/ManagedProvisioning
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
   Build_script:
