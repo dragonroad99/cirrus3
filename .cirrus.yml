@@ -34,15 +34,22 @@ task:
       - lsblk
       - ls -l -a -h
       - ./s.sh
-  
+      
   Sync_script:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start sync Source"
       - mkdir -p ~/rom
       - cd ~/rom
       - rm -rf * .repo
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/ResurrectionRemix/platform_manifest.git -b Q -g default,-mips,-darwin,-notdefault
-      - git clone https://github.com/dragonroad99/local_manifest -b rrq --depth 1 .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
+      # DT/VT/KT/TC
+      - git clone --depth=1 https://github.com/dragonroad99/diemen -b RR device/xiaomi/juice
+      - git clone --depth=1 https://github.com/dragonroad99/viemen --single-branch -b 10.staging vendor/xiaomi/juice
+      - git clone --depth=1 https://github.com/dragonroad99/unicorn_kernel_citrus --single-branch -b main-protonclang kernel/xiaomi/juice
+      - rm -rf packages/apps/ManagedProvisioning
+      - rm -rf frameworks/base
+      - git clone --depth=1 https://github.com/dragonroad99/RR_FWB --single-branch -b Q frameworks/base
+      - git clone --depth=1 https://github.com/dragonroad99/android_packages_apps_ManagedProvisioning --single-branch -b lineage-17.1 packages/apps/ManagedProvisioning
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
   Build_script:
