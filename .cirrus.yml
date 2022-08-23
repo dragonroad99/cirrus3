@@ -28,6 +28,7 @@ task:
        - cd ~/
        - time tar xf ccache.tar.gz
        - cd ~/
+       - sudo apt install wget
   
   Storage-Checker_background_script:
       - df -h
@@ -48,6 +49,8 @@ task:
       - git clone --depth=1 https://github.com/dragonroad99/unicorn_kernel_citrus --single-branch -b main-protonclang kernel/xiaomi/juice
       - rm -rf packages/apps/ManagedProvisioning
       - rm -rf frameworks/base
+      - rm -f build/make/version_defaults.mk
+      - wget https://raw.githubusercontent.com/dragonroad99/RR_build/Q/core/version_defaults.mk -P build/make
       - git clone --depth=1 https://github.com/dragonroad99/RR_FWB --single-branch -b Q frameworks/base
       - git clone --depth=1 https://github.com/dragonroad99/android_packages_apps_ManagedProvisioning --single-branch -b lineage-17.1 packages/apps/ManagedProvisioning
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
