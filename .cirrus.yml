@@ -4,7 +4,7 @@ env:
     tokentl: "ENCRYPTED[!238754dcb8487c5946fb2ef33f51ec75c7496ffd5ef1294421dc101cb2650feb0948cc08ae9cb44d661fcc87f161c60c!]"
     idtl: "ENCRYPTED[!d14c07260b8e58db209fb08351b0daab88dab14be716db6efb2ee85131d8d74ba5e29da3f49c0b57e121bcd7c86c1090!]"
     lunch : lunch tipsy_juice-userdebug
-    make: mka bacon
+    make: make tipsy
 
 
 task:
