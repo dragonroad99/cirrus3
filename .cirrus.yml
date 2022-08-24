@@ -3,8 +3,8 @@ env:
     rcloneconfig: "ENCRYPTED[!34d675dd50d10178e50359e95468a7b60c525c885f9caad4759899a644dc50fffd89305a80d491eb72cb5a4c431f79d2!]"
     tokentl: "ENCRYPTED[!238754dcb8487c5946fb2ef33f51ec75c7496ffd5ef1294421dc101cb2650feb0948cc08ae9cb44d661fcc87f161c60c!]"
     idtl: "ENCRYPTED[!d14c07260b8e58db209fb08351b0daab88dab14be716db6efb2ee85131d8d74ba5e29da3f49c0b57e121bcd7c86c1090!]"
-    lunch : lunch tipsy_juice-userdebug
-    make: make tipsy
+    lunch : lunch colt_juice-userdebug
+    make: make colt
 
 
 task:
@@ -24,7 +24,7 @@ task:
        - echo "$credentials" > ~/.git-credentials
        - git config --global credential.helper store --file=~/.git-credentials
        - mkdir -p ~/ccache
-       - rclone copy darx:tipsy/ccache.tar.gz ~/ -P
+       - rclone copy darx:coltq/ccache.tar.gz ~/ -P
        - cd ~/
        - time tar xf ccache.tar.gz
        - cd ~/
@@ -42,30 +42,25 @@ task:
       - mkdir -p ~/rom
       - cd ~/rom
       - rm -rf * .repo
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/TipsyOS/manifest.git -b tip10 -g default,-mips,-darwin,-notdefault
-      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8 --fail-fast
-      # DT/VT/KT/TC
-      - git clone --depth=1 https://github.com/dragonroad99/diemen -b tipsy device/xiaomi/juice
-      - git clone --depth=1 https://github.com/dragonroad99/viemen --single-branch -b 10.staging vendor/xiaomi/juice
-      - git clone --depth=1 https://github.com/dragonroad99/unicorn_kernel_citrus --single-branch -b main-protonclang kernel/xiaomi/juice
-      - rm -rf frameworks/opt/telephony
-      - git clone --depth=1 https://github.com/Ancient-Lab/frameworks_opt_telephony -b ten frameworks/opt/telephony
+      - repo init -q --no-repo-verify --depth=1 -u git://github.com/Colt-Enigma/platform_manifest.git -b c10 -g default,-mips,-darwin,-notdefault
+      - git clone https://github.com/dragonroad99/local_manifest --depth 1 -b colt .repo/local_manifests
+      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
       
   Build_script:
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-#      - ./collect.sh
-      - ./final.sh
+      - ./collect.sh
+#      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd ~/rom/out/target/product/juice/ && ls *.zip) Completed!"
 
   Upload_script:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build..."
-      - rclone copy ~/rom/out/target/product/juice/Tipsy*.zip darx:juice -P
+#      - rclone copy ~/rom/out/target/product/juice/ColtOS*.zip darx:juice -P
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd ~/rom/out/target/product/juice/ && ls *.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-#      - ./ziping.sh
+      - ./ziping.sh
       - cd ~/
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-#      - rclone copy ccache.tar.gz darx:tipsy -P
+      - rclone copy ccache.tar.gz darx:coltq -P
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Ccache Uploaded Successfully!" 
