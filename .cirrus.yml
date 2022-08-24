@@ -42,7 +42,7 @@ task:
       - mkdir -p ~/rom
       - cd ~/rom
       - rm -rf * .repo
-      - repo init -q --no-repo-verify --depth=1 -u git://github.com/Colt-Enigma/platform_manifest.git -b c10 -g default,-mips,-darwin,-notdefault
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/dragonroad99/colt_manifest -b c10 -g default,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
             # DT/VT/KT/TC
       - git clone --depth=1 https://github.com/dragonroad99/diemen -b colt device/xiaomi/juice
