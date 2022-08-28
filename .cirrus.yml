@@ -3,7 +3,7 @@ env:
     rcloneconfig: "ENCRYPTED[!34d675dd50d10178e50359e95468a7b60c525c885f9caad4759899a644dc50fffd89305a80d491eb72cb5a4c431f79d2!]"
     tokentl: "ENCRYPTED[!238754dcb8487c5946fb2ef33f51ec75c7496ffd5ef1294421dc101cb2650feb0948cc08ae9cb44d661fcc87f161c60c!]"
     idtl: "ENCRYPTED[!d14c07260b8e58db209fb08351b0daab88dab14be716db6efb2ee85131d8d74ba5e29da3f49c0b57e121bcd7c86c1090!]"
-    lunch : lunch aicp_chime-userdebug
+    lunch : lunch aicp_juice-userdebug
     make: mka bacon
 
 
